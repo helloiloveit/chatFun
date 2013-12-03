@@ -77,8 +77,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2.1.2</string>
-	<key>NSMainNibFile</key>
-	<string>LinphoneApp</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>LinphoneApp</string>
 	<key>UIApplicationExitsOnSuspend</key>
@@ -93,6 +91,8 @@
 	<string>linphone_splashscreen</string>
 	<key>UILaunchImageFile~iphone</key>
 	<string>linphone_splashscreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>wifi</string>

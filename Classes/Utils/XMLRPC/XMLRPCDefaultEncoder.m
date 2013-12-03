@@ -199,7 +199,7 @@
         [buffer appendString: @"<member>"];
         [buffer appendFormat: @"<name>%@</name>", [self encodeString: key omitTag: YES]];
 
-        val = [dictionary objectForKey: key];
+        val = dictionary[key];
         if (val != [NSNull null]) {
             [buffer appendString: [self encodeObject: val]];
         } else {
@@ -225,7 +225,7 @@
 }
 
 - (NSString *)encodeNumber: (NSNumber *)number {
-    NSString *numberType = [NSString stringWithCString: [number objCType] encoding: NSUTF8StringEncoding];
+    NSString *numberType = @([number objCType]);
     
     if ([numberType isEqualToString: @"d"]) {
         return [self valueTag: @"double" value: [number stringValue]];

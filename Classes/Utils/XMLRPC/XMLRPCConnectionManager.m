@@ -51,7 +51,7 @@ static XMLRPCConnectionManager *sharedInstance = nil;
     NSString *identifier = [newConnection identifier];
 #endif
     
-    [myConnections setObject: newConnection forKey: identifier];
+    myConnections[identifier] = newConnection;
     
 #if ! __has_feature(objc_arc)
     [newConnection release];
@@ -73,7 +73,7 @@ static XMLRPCConnectionManager *sharedInstance = nil;
 #pragma mark -
 
 - (XMLRPCConnection *)connectionForIdentifier: (NSString *)identifier {
-    return [myConnections objectForKey: identifier];
+    return myConnections[identifier];
 }
 
 #pragma mark -

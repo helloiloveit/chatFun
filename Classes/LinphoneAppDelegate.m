@@ -17,18 +17,18 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */                                                                           
 
-#import "PhoneMainView.h"
+
 #import "linphoneAppDelegate.h"
 #import "AddressBook/ABPerson.h"
 
 #import "CoreTelephony/CTCallCenter.h"
 #import "CoreTelephony/CTCall.h"
 
-#import "ConsoleViewController.h"
-#import "LinphoneCoreSettingsStore.h"
+
 
 #include "LinphoneManager.h"
 #include "linphonecore.h"
+#include "Utils/Utils.h"
 
 @implementation UILinphoneWindow
 
@@ -37,7 +37,7 @@
 @implementation LinphoneAppDelegate
 
 @synthesize started;
-
+@synthesize window = _window;
 
 #pragma mark - Lifecycle Functions
 
@@ -49,9 +49,7 @@
     return self;
 }
 
-- (void)dealloc {
-	[super dealloc];
-}
+
 
 
 #pragma mark - 
@@ -110,7 +108,7 @@
 			}
 			instance->currentCallContextBeforeGoingBackground.call = 0;
 		} else if ( linphone_call_get_state(call) == LinphoneCallIncomingReceived ) {
-            [[PhoneMainView  instance ] displayIncomingCall:call];
+//            [[PhoneMainView  instance ] displayIncomingCall:call];
             // in this case, the ringing sound comes from the notification.
             // To stop it we have to do the iOS7 ring fix...
             [self fixRing];
@@ -144,13 +142,13 @@
         }
     
     [self startApplication];
-	NSDictionary *remoteNotif =[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+	NSDictionary *remoteNotif =launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (remoteNotif){
 		[LinphoneLogger log:LinphoneLoggerLog format:@"PushNotification from launch received."];
 		[self processRemoteNotification:remoteNotif];
 	}
     
-    [[PhoneMainView instance] updateStatusBar:nil];
+ //   [[PhoneMainView instance] updateStatusBar:nil];
 
     return YES;
 }
@@ -166,7 +164,7 @@
         // Only execute one time at application start
         if(!started) {
             started = TRUE;
-            [[PhoneMainView instance] startUp];
+     //       [[PhoneMainView instance] startUp];
         }
     }
 }
@@ -181,10 +179,11 @@
     if([LinphoneManager isLcReady]) {
         if([[url scheme] isEqualToString:@"sip"]) {
             // Go to Dialer view
+            /*
             DialerViewController *controller = DYNAMIC_CAST([[PhoneMainView instance] changeCurrentView:[DialerViewController compositeViewDescription]], DialerViewController);
             if(controller != nil) {
                 [controller setAddress:[url absoluteString]];
-            }
+            }*/
         }
     }
 	return YES;
@@ -200,11 +199,11 @@
 }
 
 - (void)processRemoteNotification:(NSDictionary*)userInfo{
-	NSDictionary *aps = [userInfo objectForKey:@"aps"];
+	NSDictionary *aps = userInfo[@"aps"];
     if(aps != nil) {
-        NSDictionary *alert = [aps objectForKey:@"alert"];
+        NSDictionary *alert = aps[@"alert"];
         if(alert != nil) {
-            NSString *loc_key = [alert objectForKey:@"loc-key"];
+            NSString *loc_key = alert[@"loc-key"];
 			/*if we receive a remote notification, it is because our TCP background socket was no more working.
 			 As a result, break it and refresh registers in order to make sure to receive incoming INVITE or MESSAGE*/
 			LinphoneCore *lc = [LinphoneManager getLc];
@@ -212,11 +211,11 @@
 			linphone_core_set_network_reachable(lc, TRUE);
             if(loc_key != nil) {
                 if([loc_key isEqualToString:@"IM_MSG"]) {
-                    [[PhoneMainView instance] addInhibitedEvent:kLinphoneTextReceived];
-                    [[PhoneMainView instance] changeCurrentView:[ChatViewController compositeViewDescription]];
+          //          [[PhoneMainView instance] addInhibitedEvent:kLinphoneTextReceived];
+          //          [[PhoneMainView instance] changeCurrentView:[ChatViewController compositeViewDescription]];
                 } else if([loc_key isEqualToString:@"IC_MSG"]) {
                     //it's a call
-					NSString *callid=[userInfo objectForKey:@"call-id"];
+					NSString *callid=userInfo[@"call-id"];
                     if (callid)
 						[[LinphoneManager instance] enableAutoAnswerForCallId:callid];
 					else
@@ -236,24 +235,26 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [[UIApplication sharedApplication] cancelLocalNotification:notification];
-    if([notification.userInfo objectForKey:@"callId"] != nil) {
-        [[LinphoneManager instance] acceptCallForCallId:[notification.userInfo objectForKey:@"callId"]];
-    } else if([notification.userInfo objectForKey:@"chat"] != nil) {
+    if((notification.userInfo)[@"callId"] != nil) {
+        [[LinphoneManager instance] acceptCallForCallId:(notification.userInfo)[@"callId"]];
+    } else if((notification.userInfo)[@"chat"] != nil) {
+        /*
         NSString *remoteContact = (NSString*)[notification.userInfo objectForKey:@"chat"];
         // Go to ChatRoom view
         [[PhoneMainView instance] changeCurrentView:[ChatViewController compositeViewDescription]];
         ChatRoomViewController *controller = DYNAMIC_CAST([[PhoneMainView instance] changeCurrentView:[ChatRoomViewController compositeViewDescription] push:TRUE], ChatRoomViewController);
         if(controller != nil) {
             [controller setRemoteAddress:remoteContact];
-        }
-    } else if([notification.userInfo objectForKey:@"callLog"] != nil) {
+        }*/
+    } else if((notification.userInfo)[@"callLog"] != nil) {
+        /*
         NSString *callLog = (NSString*)[notification.userInfo objectForKey:@"callLog"];
         // Go to HistoryDetails view
         [[PhoneMainView instance] changeCurrentView:[HistoryViewController compositeViewDescription]];
         HistoryDetailsViewController *controller = DYNAMIC_CAST([[PhoneMainView instance] changeCurrentView:[HistoryDetailsViewController compositeViewDescription] push:TRUE], HistoryDetailsViewController);
         if(controller != nil) {
             [controller setCallLogId:callLog];
-        }
+        }*/
     }
 }
 

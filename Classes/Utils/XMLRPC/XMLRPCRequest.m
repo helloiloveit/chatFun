@@ -77,7 +77,7 @@
     NSArray *parameters = nil;
     
     if (parameter) {
-        parameters = [NSArray arrayWithObject: parameter];
+        parameters = @[parameter];
     }
     
     [myXMLEncoder setMethod: method withParameters: parameters];

@@ -275,7 +275,7 @@
             if ([myElementValue isEqual:[NSNull null]]) {
                 [parentElementValue removeObjectForKey:myElementKey];
             } else {
-                [parentElementValue setObject: myElementValue forKey: myElementKey];
+                parentElementValue[myElementKey] = myElementValue;
             }
             
             break;
@@ -310,19 +310,19 @@
 #pragma mark -
 
 - (NSNumber *)parseInteger: (NSString *)value {
-    return [NSNumber numberWithInteger: [value integerValue]];
+    return @([value integerValue]);
 }
 
 - (NSNumber *)parseDouble: (NSString *)value {
-    return [NSNumber numberWithDouble: [value doubleValue]];
+    return @([value doubleValue]);
 }
 
 - (NSNumber *)parseBoolean: (NSString *)value {
     if ([value isEqualToString: @"1"]) {
-        return [NSNumber numberWithBool: YES];
+        return @YES;
     }
     
-    return [NSNumber numberWithBool: NO];
+    return @NO;
 }
 
 - (NSString *)parseString: (NSString *)value {

@@ -38,7 +38,6 @@
     } else if(severity <= LinphoneLoggerFatal) {
         ms_fatal("%s", [str UTF8String]);
     }
-    [str release];
     va_end (args);
 }
 
@@ -202,13 +201,13 @@
 
 + (void)addDictEntry:(NSMutableDictionary*)dict item:(id)item key:(id)key {
     if(item != nil && key != nil) {
-        [dict setObject:item forKey:key];
+        dict[key] = item;
     }
 }
 
 + (id)getDictEntry:(NSDictionary*)dict key:(id)key {
     if(key != nil) {
-        return [dict objectForKey:key];
+        return dict[key];
     }
     return nil;
 }

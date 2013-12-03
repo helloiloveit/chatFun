@@ -21,19 +21,20 @@
 #import <AddressBookUI/ABPeoplePickerNavigationController.h>
 
 
-#import "LinphoneCoreSettingsStore.h"
 
 @interface UILinphoneWindow : UIWindow
 
 @end
 
-@interface LinphoneAppDelegate : NSObject <UIApplicationDelegate,UIAlertViewDelegate> {
+@interface LinphoneAppDelegate : NSObject <UIApplicationDelegate> {
     @private
 	UIWindow *window;
     BOOL started;
 	int savedMaxCall;
 	
 }
+
+@property (strong, nonatomic) UIWindow *window;
 
 - (void)processRemoteNotification:(NSDictionary*)userInfo;
 

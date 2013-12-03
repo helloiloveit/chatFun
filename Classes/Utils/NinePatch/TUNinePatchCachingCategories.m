@@ -27,7 +27,7 @@
 	id object = nil;
 	NSString *key = [NSString ninePatchKeyStringForSize:size];
 	if (key) {
-		object = [self objectForKey:key];
+		object = self[key];
 	}
 	return object;
 }
@@ -43,8 +43,7 @@
 	if (object) {
 		NSString *key = [NSString ninePatchKeyStringForSize:size];
 		if (key) {
-			[self setObject:object 
-					 forKey:key];
+			self[key] = object;
 		}
 	}
 }

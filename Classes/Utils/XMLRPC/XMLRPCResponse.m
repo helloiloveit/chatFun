@@ -43,7 +43,7 @@
 
 - (NSNumber *)faultCode {
     if (isFault) {
-        return [myObject objectForKey: @"faultCode"];
+        return myObject[@"faultCode"];
     }
     
     return nil;
@@ -51,7 +51,7 @@
 
 - (NSString *)faultString {
     if (isFault) {
-        return [myObject objectForKey: @"faultString"];
+        return myObject[@"faultString"];
     }
     
     return nil;

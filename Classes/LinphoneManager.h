@@ -26,10 +26,8 @@
 
 #import <sqlite3.h>
 
-#import "IASKSettingsReader.h"
-#import "IASKSettingsStore.h"
-#import "IASKAppSettingsViewController.h"
-#import "FastAddressBook.h"
+
+
 #import "Utils.h"
 
 #include "linphonecore.h"
@@ -157,7 +155,7 @@ typedef struct _LinphoneManagerSounds {
 - (BOOL)lpConfigBoolForKey:(NSString*)key forSection:(NSString*)section;
 
 
-@property (readonly) FastAddressBook* fastAddressBook;
+
 @property Connectivity connectivity;
 @property (readonly) NetworkType network;
 @property (readonly) const char*  frontCamId;

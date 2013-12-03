@@ -70,13 +70,12 @@
 -(void)cacheCachingNinePatch:(TUCachingNinePatch *)cachingNinePatch named:(NSString *)ninePatchName {
 	NPAssertPropertyNonNil(ninePatchCache);
 	if (cachingNinePatch && ninePatchName) {
-		[self.ninePatchCache setObject:cachingNinePatch 
-								forKey:ninePatchName];
+		(self.ninePatchCache)[ninePatchName] = cachingNinePatch;
 	}
 }
 
 -(TUCachingNinePatch *)cachedCachingNinePatchNamed:(NSString *)ninePatchName {
-	return (!ninePatchName)?(nil):([self.ninePatchCache objectForKey:ninePatchName]);
+	return (!ninePatchName)?(nil):((self.ninePatchCache)[ninePatchName]);
 }
 
 -(TUCachingNinePatch *)constructCachingNinePatchNamed:(NSString *)ninePatchName {
