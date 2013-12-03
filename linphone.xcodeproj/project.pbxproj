@@ -331,7 +331,7 @@
 		22744056106F9BC9006EC466 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		228697C311AC29B800E9E0CA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		22AA8AFB13D7125500B30535 /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libx264.a; path = "liblinphone-sdk/apple-darwin/lib/libx264.a"; sourceTree = "<group>"; };
-		22AA8AFC13D7125500B30535 /* libmsx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsx264.a; path = "liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsx264.a"; sourceTree = "<group>"; };
+		22AA8AFC13D7125500B30535 /* libmsx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsx264.a; path = ../lib/mediastreamer/plugins/libmsx264.a; sourceTree = "<group>"; };
 		22AF73C11754C0D000BE8398 /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopus.a; path = "liblinphone-sdk/apple-darwin/lib/libopus.a"; sourceTree = "<group>"; };
 		22B5EFA210CE50BD00777D97 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		22B5F03410CE6B2F00777D97 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -670,6 +670,7 @@
 		220FAC77107654FC0068D98F /* include */ = {
 			isa = PBXGroup;
 			children = (
+				22AA8AFC13D7125500B30535 /* libmsx264.a */,
 				22C7560413265C6A007BC101 /* openssl */,
 				220FAC78107654FC0068D98F /* eXosip2 */,
 				220FAC82107654FC0068D98F /* gsm */,
@@ -1154,7 +1155,6 @@
 				226CDADE14E2D0B800513B67 /* libmsbcg729.a */,
 				223148E51178A09900637D6A /* libmsilbc.a */,
 				226183AF147259670037138E /* libmssilk.a */,
-				22AA8AFC13D7125500B30535 /* libmsx264.a */,
 				226F2ED41344B0EF00F6EF27 /* libopencore-amrnb.a */,
 				226F2ED31344B0EF00F6EF27 /* libopencore-amrwb.a */,
 				220FAD2C10765B400068D98F /* libortp.a */,

@@ -33,7 +33,7 @@
 	linphone_core_clear_all_auth_info([LinphoneManager getLc]);
 }
 - (void)setDefaultSettings:(LinphoneProxyConfig*)proxyCfg {
-    BOOL pushnotification = [[LinphoneManager instance] lpConfigBoolForKey:@"push_notification" forSection:@"wizard"];
+    BOOL pushnotification = [[LinphoneManager instance] lpConfigBoolForKey:@" aapush_notification" forSection:@"wizard"];
     [[LinphoneManager instance] lpConfigSetBool:pushnotification forKey:@"pushnotification_preference"];
     if(pushnotification) {
         [[LinphoneManager instance] addPushTokenToProxyConfig:proxyCfg];
