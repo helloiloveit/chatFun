@@ -329,6 +329,7 @@ void linphone_iphone_log_handler(int lev, const char *fmt, va_list args){
         [[LinphoneManager instance].logs addObject:formatedString];
         
         // Post event
+
         NSDictionary *dict = @{@"log": formatedString};
         [[NSNotificationCenter defaultCenter] postNotificationName:kLinphoneLogsUpdate object:[LinphoneManager instance] userInfo:dict];
     });
@@ -617,8 +618,15 @@ static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyCo
 							chat, @"chat",
                            nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:kLinphoneTextReceived object:self userInfo:dict];
-
-     */
+    */
+    NSString *smsInfo = @(linphone_chat_message_get_text(msg));
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSValue valueWithPointer:room], @"room",
+                          [NSValue valueWithPointer:linphone_chat_message_get_from(msg)], @"from",
+                          smsInfo, @"message",
+                          nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLinphoneTextReceived object:self userInfo:dict];
+    
 }
 
 static void linphone_iphone_message_received(LinphoneCore *lc, LinphoneChatRoom *room, LinphoneChatMessage *message) {

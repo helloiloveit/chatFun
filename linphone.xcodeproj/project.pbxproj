@@ -85,6 +85,8 @@
 		34075199150645A300B89C47 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340751961506459A00B89C47 /* CoreTelephony.framework */; };
 		344ABDF114850AE9007420B6 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ABDEF14850AE9007420B6 /* libc++.1.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		344ABDF214850AE9007420B6 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ABDF014850AE9007420B6 /* libstdc++.6.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3A6FB7CD184EC31F00DF8B21 /* ChatMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB7CC184EC31F00DF8B21 /* ChatMainWindow.m */; };
+		3A6FB7D0184EC39300DF8B21 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB7CF184EC39300DF8B21 /* CustomTableViewCell.m */; };
 		3A847D7D184DD3C8007583A2 /* linphone-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A847D7C184DD3C8007583A2 /* linphone-Info.plist */; };
 		3A847D80184DD4F8007583A2 /* LinphoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A847D7F184DD4F8007583A2 /* LinphoneAppDelegate.m */; };
 		3A847D83184DD5B0007583A2 /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A847D82184DD5B0007583A2 /* LinphoneManager.m */; };
@@ -509,6 +511,10 @@
 		340751961506459A00B89C47 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		344ABDEF14850AE9007420B6 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "usr/lib/libc++.1.dylib"; sourceTree = SDKROOT; };
 		344ABDF014850AE9007420B6 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		3A6FB7CB184EC31F00DF8B21 /* ChatMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMainWindow.h; sourceTree = "<group>"; };
+		3A6FB7CC184EC31F00DF8B21 /* ChatMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMainWindow.m; sourceTree = "<group>"; };
+		3A6FB7CE184EC39300DF8B21 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		3A6FB7CF184EC39300DF8B21 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		3A847D7C184DD3C8007583A2 /* linphone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "linphone-Info.plist"; sourceTree = "<group>"; };
 		3A847D7E184DD4F8007583A2 /* LinphoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneAppDelegate.h; sourceTree = "<group>"; };
 		3A847D7F184DD4F8007583A2 /* LinphoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinphoneAppDelegate.m; sourceTree = "<group>"; };
@@ -651,6 +657,7 @@
 				3A847D82184DD5B0007583A2 /* LinphoneManager.m */,
 				3A847D7E184DD4F8007583A2 /* LinphoneAppDelegate.h */,
 				3A847D7F184DD4F8007583A2 /* LinphoneAppDelegate.m */,
+				3A6FB7D1184EC39600DF8B21 /* ChatWindow */,
 				2214EB7012F84668002A5394 /* LinphoneUI */,
 				D32B6E3515A5C2200033019F /* Model */,
 				D326483415887D4400930C67 /* Utils */,
@@ -1228,6 +1235,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A6FB7D1184EC39600DF8B21 /* ChatWindow */ = {
+			isa = PBXGroup;
+			children = (
+				3A6FB7CE184EC39300DF8B21 /* CustomTableViewCell.h */,
+				3A6FB7CF184EC39300DF8B21 /* CustomTableViewCell.m */,
+				3A6FB7CB184EC31F00DF8B21 /* ChatMainWindow.h */,
+				3A6FB7CC184EC31F00DF8B21 /* ChatMainWindow.m */,
+			);
+			name = ChatWindow;
+			sourceTree = "<group>";
+		};
 		D326483415887D4400930C67 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1436,7 +1454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A847D88184DDBCE007583A2 /* WizardViewController.m in Sources */,
+				3A6FB7D0184EC39300DF8B21 /* CustomTableViewCell.m in Sources */,
 				3A847D83184DD5B0007583A2 /* LinphoneManager.m in Sources */,
+				3A6FB7CD184EC31F00DF8B21 /* ChatMainWindow.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				D35860D615B549B500513429 /* Utils.m in Sources */,
 				3A847D80184DD4F8007583A2 /* LinphoneAppDelegate.m in Sources */,
