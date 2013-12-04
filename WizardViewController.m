@@ -14,7 +14,7 @@
 @end
 
 @implementation WizardViewController
-
+@synthesize userName, passWord, domainName;
 
 
 - (void)viewDidLoad
@@ -126,18 +126,15 @@
 }
 
 - (IBAction)singin:(id)sender {
-    NSString *username = @"huynm";
-    NSString *password = @"maihuy123";
-    NSString *domain = @"sip2sip.info";
     
     
     NSMutableString *errors = [NSMutableString string];
-    if ([username length] == 0) {
+    if ([self.userName.text length] == 0) {
         
         [errors appendString:[NSString stringWithFormat:NSLocalizedString(@"Please enter a username.\n", nil)]];
     }
     
-    if ([domain length] == 0) {
+    if ([self.domainName.text length] == 0) {
         [errors appendString:[NSString stringWithFormat:NSLocalizedString(@"Please enter a domain.\n", nil)]];
     }
     
@@ -151,7 +148,7 @@
      
     } else {
    //     [self.waitView setHidden:false];
-        [self addProxyConfig:username password:password domain:domain server:nil];
+        [self addProxyConfig:self.userName.text password:self.passWord.text domain:self.domainName.text server:nil];
     }
 }
 @end
