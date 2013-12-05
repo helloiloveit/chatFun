@@ -208,15 +208,17 @@ struct codec_name_pref_table codec_pref_table[]={
 
 - (id)init {
     if ((self = [super init])) {
+        /*
         AudioSessionInitialize(NULL, NULL, NULL, NULL);
         OSStatus lStatus = AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, audioRouteChangeListenerCallback, (__bridge void *)(self));
         if (lStatus) {
             [LinphoneLogger logc:LinphoneLoggerError format:"cannot register route change handler [%ld]",lStatus];
         }
-        
+    
         // Sounds
         {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+            NSLog(@"path = %@", path);
             sounds.call = 0;
             OSStatus status = AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &sounds.call);
             if(status != 0){
@@ -231,7 +233,7 @@ struct codec_name_pref_table codec_pref_table[]={
                 [LinphoneLogger log:LinphoneLoggerWarning format:@"Can't set \"message\" system sound"];
             }
         }
-        
+        */
         logs = [[NSMutableArray alloc] init];
         database = NULL;
         speakerEnabled = FALSE;
@@ -245,24 +247,7 @@ struct codec_name_pref_table codec_pref_table[]={
     return self;
 }
 
-- (void)dealloc {
-    if(sounds.call) {
-        AudioServicesDisposeSystemSoundID(sounds.call);
-    }
-    if(sounds.message) {
-        AudioServicesDisposeSystemSoundID(sounds.message);
-    }
 
-    [self closeDatabase];
-
-    
-    OSStatus lStatus = AudioSessionRemovePropertyListenerWithUserData(kAudioSessionProperty_AudioRouteChange, audioRouteChangeListenerCallback, (__bridge void *)(self));
-	if (lStatus) {
-		[LinphoneLogger logc:LinphoneLoggerError format:"cannot un register route change handler [%ld]", lStatus];
-	}
-    
-
-}
 
 
 #pragma mark - Database Functions
@@ -1139,6 +1124,7 @@ static int comp_call_state_paused  (const LinphoneCall* call, const void* param)
 #pragma mark - Audio route Functions
 
 - (bool)allowSpeaker {
+    /*
     bool notallow = false;
     CFStringRef lNewRoute = CFSTR("Unknown");
     UInt32 lNewRouteSize = sizeof(lNewRoute);
@@ -1153,6 +1139,8 @@ static int comp_call_state_paused  (const LinphoneCall* call, const void* param)
         CFRelease(lNewRoute);
     }
     return !notallow;
+     */
+    return FALSE;
 }
 
 static void audioRouteChangeListenerCallback (
@@ -1161,6 +1149,7 @@ static void audioRouteChangeListenerCallback (
                                               UInt32                 inPropertyValueSize,                         // 3
                                               const void             *inPropertyValue                             // 4
                                               ) {
+                                                  /*
     if (inPropertyID != kAudioSessionProperty_AudioRouteChange) return; // 5
     LinphoneManager* lm = (__bridge LinphoneManager*)inUserData;
     
@@ -1185,12 +1174,12 @@ static void audioRouteChangeListenerCallback (
     
     if(speakerEnabled != lm.speakerEnabled) { // Reforce value
         lm.speakerEnabled = lm.speakerEnabled;
-    }
+    }*/
 }
 
 - (void)setSpeakerEnabled:(BOOL)enable {
     speakerEnabled = enable;
-
+/*
     if(enable && [self allowSpeaker]) {
         UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
         AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute
@@ -1207,7 +1196,8 @@ static void audioRouteChangeListenerCallback (
     if (bluetoothAvailable) {
         UInt32 bluetoothInputOverride = bluetoothEnabled;
         AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryEnableBluetoothInput, sizeof(bluetoothInputOverride), &bluetoothInputOverride);
-    }
+    }.
+ */
 }
 
 - (void)setBluetoothEnabled:(BOOL)enable {
