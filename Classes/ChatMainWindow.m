@@ -111,19 +111,26 @@ NSString *const RECEIVING = @"receiving_sms";
 }
 
 - (void)willShowKeyboard{
-    
+    self.smsText.text = nil;
     [UIView animateWithDuration:0.1
                           delay:0
                         options: 0
                      animations:^{
                          [self.smsText setFrame:CGRectMake(self.stylingButton.frame.size.width, 320   , self.smsText.frame.size.width, self.smsText.frame.size.height )];
-                         [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, 320, self.sendButton.frame.size.width, self.smsText.frame.size.height)];
+                        // [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, 320, self.sendButton.frame.size.width, self.smsText.frame.size.height)];
+                          [self.sendButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - self.sendButton.frame.size.width, 320, self.sendButton.frame.size.width, self.sendButton.frame.size.height)];
                          [self.stylingButton setFrame:CGRectMake(0, 320, self.stylingButton.frame.size.width, self.stylingButton.frame.size.height)];
                      }
                      completion:^(BOOL finished){
                          
                      }];
-    
+    /*
+    NSLog(@"display position of sendButton  y: %f",self.sendButton.frame.origin.y   );
+    NSLog(@"display position of sendButton x : %f",self.sendButton.frame.origin.x   );
+    NSLog(@"display position of stylingButton  y: %f",self.stylingButton.frame.origin.y   );
+    NSLog(@"display position of stylingButton x : %f",self.stylingButton.frame.origin.x   );
+    NSLog(@"display position of window width x : %f",[UIScreen mainScreen].bounds.size.width   );
+     */
 }
 -(void)hideShowKeyboard{
     /*
@@ -156,6 +163,7 @@ NSString *const RECEIVING = @"receiving_sms";
                          
                      }];
 }
+
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
@@ -174,6 +182,11 @@ NSString *const RECEIVING = @"receiving_sms";
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+    
+    //set button position
+ //   [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, [UIScreen mainScreen].bounds.size.height , self.sendButton.frame.size.width, self.smsText.frame.size.height)];
+    
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
@@ -191,8 +204,11 @@ NSString *const RECEIVING = @"receiving_sms";
     [self initSwipe];
     [self registerForKeyboardNotifications];
     [self.navigationController setNavigationBarHidden:YES];
-      [self initView];
+    [self initView];
     NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"live a life"};
+    
+    
+    /*
     for (NSString *familyName in [UIFont familyNames])
     {
         NSLog(@"----------------");
@@ -201,7 +217,9 @@ NSString *const RECEIVING = @"receiving_sms";
         {
             NSLog(@"  %@", fontName);
         }
-    }
+    }*/
+    
+    
 
 //    arryData = [[NSMutableArray alloc] initWithObjects:@"iPhone",@"iPod",@"MacBook",@"MacBook Pro",nil];
     arryData = [[NSMutableArray alloc] initWithObjects:dict1,dict1,dict1,dict1,nil];

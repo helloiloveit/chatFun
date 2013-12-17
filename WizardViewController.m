@@ -151,4 +151,8 @@
         [self addProxyConfig:self.userName.text password:self.passWord.text domain:self.domainName.text server:nil];
     }
 }
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 @end
