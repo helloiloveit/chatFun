@@ -92,6 +92,8 @@
 		3A847D83184DD5B0007583A2 /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A847D82184DD5B0007583A2 /* LinphoneManager.m */; };
 		3A847D85184DDA92007583A2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A847D84184DDA92007583A2 /* Storyboard.storyboard */; };
 		3A847D88184DDBCE007583A2 /* WizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A847D87184DDBCE007583A2 /* WizardViewController.m */; };
+		3A9886AB18629DCC005A2CE3 /* FriendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9886AA18629DCC005A2CE3 /* FriendListVC.m */; };
+		3A9886AF18629E3C005A2CE3 /* FriendListCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9886AE18629E3C005A2CE3 /* FriendListCustomCell.m */; };
 		57B0E360173C010400A476B8 /* libpolarssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B0E35F173C010400A476B8 /* libpolarssl.a */; };
 		7066FC0C13E830E400EFC6DC /* libvpx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7066FC0B13E830E400EFC6DC /* libvpx.a */; };
 		70E542F313E147E3002BA2C0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E542F213E147E3002BA2C0 /* OpenGLES.framework */; };
@@ -523,6 +525,11 @@
 		3A847D84184DDA92007583A2 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		3A847D86184DDBCE007583A2 /* WizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardViewController.h; sourceTree = "<group>"; };
 		3A847D87184DDBCE007583A2 /* WizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardViewController.m; sourceTree = "<group>"; };
+		3A9886A918629DCC005A2CE3 /* FriendListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListVC.h; path = ../FriendListVC.h; sourceTree = "<group>"; };
+		3A9886AA18629DCC005A2CE3 /* FriendListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListVC.m; path = ../FriendListVC.m; sourceTree = "<group>"; };
+		3A9886AD18629E3C005A2CE3 /* FriendListCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListCustomCell.h; sourceTree = "<group>"; };
+		3A9886AE18629E3C005A2CE3 /* FriendListCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListCustomCell.m; sourceTree = "<group>"; };
+		3A9886B01862ECCF005A2CE3 /* ConstantDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantDefinition.h; sourceTree = "<group>"; };
 		57B0E35F173C010400A476B8 /* libpolarssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpolarssl.a; path = "liblinphone-sdk/apple-darwin/lib/libpolarssl.a"; sourceTree = "<group>"; };
 		7066FC0B13E830E400EFC6DC /* libvpx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.a; path = "liblinphone-sdk/apple-darwin/lib/libvpx.a"; sourceTree = "<group>"; };
 		70E542F213E147E3002BA2C0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -653,6 +660,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3A9886B01862ECCF005A2CE3 /* ConstantDefinition.h */,
+				3A9886AC18629DD7005A2CE3 /* FriendList */,
 				3A847D81184DD5B0007583A2 /* LinphoneManager.h */,
 				3A847D82184DD5B0007583A2 /* LinphoneManager.m */,
 				3A847D7E184DD4F8007583A2 /* LinphoneAppDelegate.h */,
@@ -1246,6 +1255,17 @@
 			name = ChatWindow;
 			sourceTree = "<group>";
 		};
+		3A9886AC18629DD7005A2CE3 /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				3A9886AD18629E3C005A2CE3 /* FriendListCustomCell.h */,
+				3A9886AE18629E3C005A2CE3 /* FriendListCustomCell.m */,
+				3A9886A918629DCC005A2CE3 /* FriendListVC.h */,
+				3A9886AA18629DCC005A2CE3 /* FriendListVC.m */,
+			);
+			name = FriendList;
+			sourceTree = "<group>";
+		};
 		D326483415887D4400930C67 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1455,10 +1475,12 @@
 			files = (
 				3A847D88184DDBCE007583A2 /* WizardViewController.m in Sources */,
 				3A6FB7D0184EC39300DF8B21 /* CustomTableViewCell.m in Sources */,
+				3A9886AF18629E3C005A2CE3 /* FriendListCustomCell.m in Sources */,
 				3A847D83184DD5B0007583A2 /* LinphoneManager.m in Sources */,
 				3A6FB7CD184EC31F00DF8B21 /* ChatMainWindow.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				D35860D615B549B500513429 /* Utils.m in Sources */,
+				3A9886AB18629DCC005A2CE3 /* FriendListVC.m in Sources */,
 				3A847D80184DD4F8007583A2 /* LinphoneAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

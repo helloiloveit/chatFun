@@ -45,20 +45,12 @@
 - (IBAction)bigFont:(id)sender;
 
 
-//@property (weak, nonatomic) IBOutlet UIButton *smallFont;
-//@property (weak, nonatomic) IBOutlet UIButton *mediumFont;
-//@property (weak, nonatomic) IBOutlet UIButton *bigFont;
 //Font type
 - (IBAction)fontType1:(id)sender;
 - (IBAction)fontType2:(id)sender;
 - (IBAction)fontType3:(id)sender;
 - (IBAction)fontType4:(id)sender;
 
-
-//@property (weak, nonatomic) IBOutlet UIButton *fontType1;
-//@property (weak, nonatomic) IBOutlet UIButton *fontType2;
-//@property (weak, nonatomic) IBOutlet UIButton *fontType3;
-//@property (weak, nonatomic) IBOutlet UIButton *fontType4;
 
 
 

@@ -28,7 +28,8 @@
 @implementation ChatMainWindow
 
 //#define REMOVE_ADDRESS = @"1001";
-NSString *const REMOVE_ADDRESS = @"huynm";
+NSString *const REMOVE_ADDRESS1 = @"huynm";
+NSString *const REMOVE_ADDRESS2 = @"dunglh";
 
 NSString *const FONT_TYPE = @"font_type";
 NSString *const FONT_SIZE = @"font_size";
@@ -118,7 +119,7 @@ NSString *const RECEIVING = @"receiving_sms";
                      animations:^{
                          [self.smsText setFrame:CGRectMake(self.stylingButton.frame.size.width, 320   , self.smsText.frame.size.width, self.smsText.frame.size.height )];
                         // [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, 320, self.sendButton.frame.size.width, self.smsText.frame.size.height)];
-                          [self.sendButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - self.sendButton.frame.size.width, 320, self.sendButton.frame.size.width, self.sendButton.frame.size.height)];
+                          [self.sendButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - self.sendButton.frame.size.width, 310, self.sendButton.frame.size.width, self.sendButton.frame.size.height)];
                          [self.stylingButton setFrame:CGRectMake(0, 320, self.stylingButton.frame.size.width, self.stylingButton.frame.size.height)];
                      }
                      completion:^(BOOL finished){
@@ -169,25 +170,28 @@ NSString *const RECEIVING = @"receiving_sms";
 }
 
 - (void )initView{
+    
     stylingSelection.hidden = YES;
     
-    fontTypeName = @"HelveticaNeue";
-    fontSize = @"15";
-    
+    fontTypeName = @"Noteworthy-Light";
+    fontSize = @"25";
+
     self.smsText.delegate = self;
-    
-  //  self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ChatTheme.jpg"]];
+
+/*
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"ChatTheme.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    */
+    self.view.backgroundColor = [UIColor blackColor];
     
     //set button position
  //   [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, [UIScreen mainScreen].bounds.size.height , self.sendButton.frame.size.width, self.smsText.frame.size.height)];
     
+
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -201,11 +205,13 @@ NSString *const RECEIVING = @"receiving_sms";
 
 - (void)viewDidLoad
 {
+    
+    
     [self initSwipe];
     [self registerForKeyboardNotifications];
     [self.navigationController setNavigationBarHidden:YES];
     [self initView];
-    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"live a life"};
+    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"merry christmax"};
     
     
     /*
@@ -217,13 +223,14 @@ NSString *const RECEIVING = @"receiving_sms";
         {
             NSLog(@"  %@", fontName);
         }
-    }*/
-    
+    }
+    */
     
 
 //    arryData = [[NSMutableArray alloc] initWithObjects:@"iPhone",@"iPod",@"MacBook",@"MacBook Pro",nil];
     arryData = [[NSMutableArray alloc] initWithObjects:dict1,dict1,dict1,dict1,nil];
     fontArrayData =[[NSMutableArray alloc] initWithObjects:@"HiraKakuProN-W6",@"Cochin-Italic",@"STHeitiSC-Light",@"BradleyHandITCTT-Bold", @"Noteworthy-Light", @"Zapfino", nil];
+  
     [super viewDidLoad];
     
 
@@ -234,6 +241,8 @@ NSString *const RECEIVING = @"receiving_sms";
                                                  name:kLinphoneTextReceived
                                                object:nil];
 	// Do any additional setup after loading the view.
+    
+    
 }
 
 
@@ -496,7 +505,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (BOOL)sendMessage:(NSString *)message withExterlBodyUrl:(NSURL*)externalUrl withInternalUrl:(NSURL*)internalUrl {
     NSLog(@"SENDING \n\n\n");
-    remoteAddress = REMOVE_ADDRESS;
+   // remoteAddress = REMOVE_ADDRESS;
     if(chatRoom == NULL) {
 		chatRoom = linphone_core_create_chat_room([LinphoneManager getLc], [remoteAddress UTF8String]);
     }

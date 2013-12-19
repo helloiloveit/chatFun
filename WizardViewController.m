@@ -17,8 +17,50 @@
 @synthesize userName, passWord, domainName;
 
 
+-(void)turnOffTyping{
+    [userName resignFirstResponder];
+    [passWord resignFirstResponder];
+    [domainName resignFirstResponder];
+
+}
+- (void)swipeDetected:(UISwipeGestureRecognizer *)gesture
+{
+    switch (gesture.direction) {
+        case UISwipeGestureRecognizerDirectionUp:
+            // you can include this case too
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            [self turnOffTyping];
+            // you can include this case too
+            break;
+        case UISwipeGestureRecognizerDirectionLeft:
+        case UISwipeGestureRecognizerDirectionRight:
+            [self.navigationController popViewControllerAnimated:YES];
+            // disable timer for both left and right swipes.
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)initSwipe
+{
+    
+    UISwipeGestureRecognizer *swipeRecognizer =
+    [[UISwipeGestureRecognizer alloc]
+     initWithTarget:self
+     action:@selector(swipeDetected:)];
+    swipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    
+
+    [self.view addGestureRecognizer:swipeRecognizer];
+    
+    
+}
+
 - (void)viewDidLoad
 {
+        [self initSwipe];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
