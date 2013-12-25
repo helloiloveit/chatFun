@@ -189,15 +189,15 @@ NSString *const RECEIVING = @"receiving_sms";
 
 
 
-/*
+
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"ChatTheme.jpg"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"tree.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    */
+    self.chatView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
     //self.view.backgroundColor = [UIColor blackColor];
-    chatView.backgroundColor = [UIColor blackColor];
+   // chatView.backgroundColor = [UIColor blackColor];
     
 
     
@@ -286,7 +286,7 @@ NSString *const RECEIVING = @"receiving_sms";
 	messageField.font = [UIFont systemFontOfSize:18.0f];
     messageField.contentInset = UIEdgeInsetsMake(10, -5, -2, -5);
     messageField.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    messageField.backgroundColor = [UIColor redColor];
+    messageField.backgroundColor = [UIColor clearColor];
     
     NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"merry christmax"};
     
