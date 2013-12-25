@@ -58,10 +58,54 @@
     
 }
 
+- (void)registrationUpdate:(LinphoneRegistrationState)state {
+    switch (state) {
+        case LinphoneRegistrationOk: {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ping Ping" message:@"Loging successfully" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"okay", nil, nil];
+
+            [alert show];
+            NSLog(@"lalal");
+            [ self performSegueWithIdentifier: @"go_to_chat" sender: NULL];
+            break;
+        }
+        case LinphoneRegistrationNone:
+        case LinphoneRegistrationCleared:  {
+
+            break;
+        }
+        case LinphoneRegistrationFailed: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opps" message:@"Loging Failed" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"okay", nil, nil];
+            
+            [alert show];
+            break;
+        }
+        case LinphoneRegistrationProgress: {
+
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+
+- (void)registrationUpdateEvent:(NSNotification*)notif {
+    NSLog(@"Registration status change");
+        [self registrationUpdate:[[notif.userInfo objectForKey: @"state"] intValue]];
+}
+
+
+
 - (void)viewDidLoad
 {
         [self initSwipe];
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(registrationUpdateEvent:)
+                                                 name:kLinphoneRegistrationUpdate
+                                               object:nil];
 	// Do any additional setup after loading the view.
 }
 

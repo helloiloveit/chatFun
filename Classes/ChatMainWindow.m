@@ -41,13 +41,16 @@ NSString *const RECEIVING = @"receiving_sms";
 
 
 @synthesize remoteAddress;
-@synthesize smsText;
 @synthesize sendButton;
 @synthesize smsTableView;
 @synthesize stylingButton;
 @synthesize stylingSelection;
 @synthesize fontSize;
 @synthesize fontTypeName;
+@synthesize messageField;
+@synthesize messageView;
+@synthesize chatView;
+
 
 // handle the swipes here
 - (void)swipeDetected:(UISwipeGestureRecognizer *)gesture
@@ -93,10 +96,11 @@ NSString *const RECEIVING = @"receiving_sms";
 }
 
 -(void)dismissKeyboard {
-    [self.smsText resignFirstResponder];
+
+    [self.messageField resignFirstResponder];
 }
 - (void)showKeyboard{
-    [self.smsText becomeFirstResponder];
+    [self.messageField becomeFirstResponder];
 }
 
 - (void)registerForKeyboardNotifications
@@ -112,15 +116,16 @@ NSString *const RECEIVING = @"receiving_sms";
 }
 
 - (void)willShowKeyboard{
-    self.smsText.text = nil;
+    NSLog(@"display position of chatView  y: %f",self.messageView.frame.origin.y   );
+    NSLog(@"display position of chatView x : %f",self.messageView.frame.origin.x   );
     [UIView animateWithDuration:0.1
                           delay:0
                         options: 0
                      animations:^{
-                         [self.smsText setFrame:CGRectMake(self.stylingButton.frame.size.width, 320   , self.smsText.frame.size.width, self.smsText.frame.size.height )];
-                        // [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, 320, self.sendButton.frame.size.width, self.smsText.frame.size.height)];
-                          [self.sendButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - self.sendButton.frame.size.width, 310, self.sendButton.frame.size.width, self.sendButton.frame.size.height)];
-                         [self.stylingButton setFrame:CGRectMake(0, 320, self.stylingButton.frame.size.width, self.stylingButton.frame.size.height)];
+                         CGRect chatFrame = [[self messageView] frame];
+                         chatFrame.origin.y = 300;
+                         [[self messageView] setFrame:chatFrame];
+
                      }
                      completion:^(BOOL finished){
                          
@@ -139,9 +144,6 @@ NSString *const RECEIVING = @"receiving_sms";
                           delay:0
                         options: 0
                      animations:^{
-                         [self.smsText setFrame:CGRectMake(self.stylingButton.frame.size.width, [UIScreen mainScreen].bounds.size.height - self.smsText.frame.size.height   , self.smsText.frame.size.width, self.smsText.frame.size.height )];
-                        [self.stylingButton setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - self.stylingButton.frame.size.height,self.stylingButton.frame.size.width, self.stylingButton.frame.size.height)];
-                         [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width,[UIScreen mainScreen].bounds.size.height - self.smsText.frame.size.height ,self.sendButton.frame.size.width, self.smsText.frame.size.height)];
                      }
                      completion:^(BOOL finished){
 
@@ -150,15 +152,22 @@ NSString *const RECEIVING = @"receiving_sms";
 */
 }
 -(void)turnOffTyping{
-    [self.smsText resignFirstResponder];
+
+    [self.messageField resignFirstResponder];
+    
     self.stylingSelection.hidden = YES;
+    NSLog(@"display position of chatView  y: %f",self.messageView.frame.origin.y   );
+    NSLog(@"display position of chatView x : %f",self.messageView.frame.origin.x   );
+    CGRect chatFrame = [[self messageView] frame];
+    chatFrame.origin.y = [[self view] frame].size.height - messageView.frame.size.height;
+    [[self messageView] setFrame:chatFrame];
+
+    
     [UIView animateWithDuration:0.1
                           delay:0
                         options: 0
                      animations:^{
-                         [self.smsText setFrame:CGRectMake(self.stylingButton.frame.size.width, [UIScreen mainScreen].bounds.size.height - self.smsText.frame.size.height   , self.smsText.frame.size.width, self.smsText.frame.size.height )];
-                         [self.stylingButton setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - self.stylingButton.frame.size.height,self.stylingButton.frame.size.width, self.stylingButton.frame.size.height)];
-                         [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width,[UIScreen mainScreen].bounds.size.height - self.smsText.frame.size.height ,self.sendButton.frame.size.width, self.smsText.frame.size.height)];
+
                      }
                      completion:^(BOOL finished){
                          
@@ -176,7 +185,7 @@ NSString *const RECEIVING = @"receiving_sms";
     fontTypeName = @"Noteworthy-Light";
     fontSize = @"25";
 
-    self.smsText.delegate = self;
+
 
 /*
     UIGraphicsBeginImageContext(self.view.frame.size);
@@ -185,10 +194,10 @@ NSString *const RECEIVING = @"receiving_sms";
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     */
-    self.view.backgroundColor = [UIColor blackColor];
+    //self.view.backgroundColor = [UIColor blackColor];
+    chatView.backgroundColor = [UIColor blackColor];
     
-    //set button position
- //   [self.sendButton setFrame:CGRectMake(self.stylingButton.frame.size.width +  self.smsText.frame.size.width, [UIScreen mainScreen].bounds.size.height , self.sendButton.frame.size.width, self.smsText.frame.size.height)];
+
     
 
     
@@ -203,6 +212,62 @@ NSString *const RECEIVING = @"receiving_sms";
     return YES;
 }
 
+#pragma mark - UITextFieldDelegate Functions
+/*
+- (BOOL)growingTextViewShouldBeginEditing:(HPGrowingTextView *)growingTextView {
+    if(editButton.selected) {
+        [tableController setEditing:FALSE animated:TRUE];
+        [editButton setOff];
+    }
+    [listTapGestureRecognizer setEnabled:TRUE];
+    return TRUE;
+}
+
+- (BOOL)growingTextViewShouldEndEditing:(HPGrowingTextView *)growingTextView {
+    [listTapGestureRecognizer setEnabled:FALSE];
+    return TRUE;
+}
+*/
+- (void)growingTextView:(HPGrowingTextView *)growingTextView willChangeHeight:(float)height {
+    int diff = height - growingTextView.bounds.size.height;
+    NSLog(@"display position of orign  growingTextView: %f",growingTextView.bounds.size.height   );
+    NSLog(@"display position of grow  : %f",height);
+    if(diff != 0) {
+        CGRect messageRect = [messageView frame];
+        messageRect.origin.y -= diff;
+        messageRect.size.height += diff;
+        [messageView setFrame:messageRect];
+        
+        /*
+        CGRect messageTextRect = [messageField frame];
+        messageTextRect.origin.y -= diff;
+        messageTextRect.size.height += diff;
+        [messageField setFrame:messageTextRect];
+        NSLog(@"(*****Result Height after messageFeild: %f",messageField.bounds.size.height   );
+         */
+        /*
+        // Always stay at bottom
+        if(scrollOnGrowingEnabled) {
+            CGRect tableFrame = [tableController.view frame];
+            CGPoint contentPt = [tableController.tableView contentOffset];
+            contentPt.y += diff;
+            if(contentPt.y + tableFrame.size.height > tableController.tableView.contentSize.height)
+                contentPt.y += diff;
+            [tableController.tableView setContentOffset:contentPt animated:FALSE];
+        }
+        
+        CGRect tableRect = [tableController.view frame];
+        tableRect.size.height -= diff;
+        [tableController.view setFrame:tableRect];
+        
+        [messageBackgroundImage setImage:[TUNinePatchCache imageOfSize:[messageBackgroundImage bounds].size
+                                                     forNinePatchNamed:@"chat_message_background"]];
+         */
+    }
+    NSLog(@"display position of orign  y: %f",messageView.bounds.size.height   );
+}
+
+
 - (void)viewDidLoad
 {
     
@@ -211,6 +276,16 @@ NSString *const RECEIVING = @"receiving_sms";
     [self registerForKeyboardNotifications];
     [self.navigationController setNavigationBarHidden:YES];
     [self initView];
+    
+    
+    messageField.minNumberOfLines = 1;
+	messageField.maxNumberOfLines = ([LinphoneManager runningOnIpad])?10:3;
+    messageField.delegate = self;
+	messageField.font = [UIFont systemFontOfSize:18.0f];
+    messageField.contentInset = UIEdgeInsetsMake(10, -5, -2, -5);
+    messageField.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    messageField.backgroundColor = [UIColor redColor];
+    
     NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"merry christmax"};
     
     
@@ -442,13 +517,25 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.fontListTableView) {
         NSString *font_name_info = [fontArrayData objectAtIndex:indexPath.row];
         fontTypeName = font_name_info;
-        [self.smsText setFont:[UIFont fontWithName:font_name_info size:[fontSize intValue]]];
+        [self.messageField setFont:[UIFont fontWithName:font_name_info size:[fontSize intValue]]];
     }
 }
 
+/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *CellIdentifier = @"Cell";
+  
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *font_name_info = [arryData objectAtIndex:indexPath.row][FONT_TYPE];
+    NSString *font_size_info = [arryData objectAtIndex:indexPath.row][FONT_SIZE];
+    NSString *sms_data_info = [arryData objectAtIndex:indexPath.row][SMS_INFO];
+    
+    return 4;
+}*/
 
 - (IBAction)sendSMS:(id)sender {
-    NSDictionary *smsPDU = @{FONT_TYPE :fontTypeName, FONT_SIZE : fontSize, SMS_INFO : smsText.text};
+    NSDictionary *smsPDU = @{FONT_TYPE :fontTypeName, FONT_SIZE : fontSize, SMS_INFO : [messageField text]};
     NSError *error;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:smsPDU
@@ -464,10 +551,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     
 
-    NSDictionary *text_data_unit = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE: fontSize, SMS_INFO:smsText.text};
+    NSDictionary *text_data_unit = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE: fontSize, SMS_INFO:[messageField text]};
     [arryData addObject:text_data_unit];
     [arryData removeObjectAtIndex:0];
 	[smsTableView reloadData];
+    
+
+    messageField.text = nil;
 }
 
 - (IBAction)selectStyling:(id)sender {
@@ -540,39 +630,39 @@ static void message_status(LinphoneChatMessage* msg,LinphoneChatMessageState sta
 }
 - (IBAction)smallFont:(id)sender {
     fontSize = @"15";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 
 }
 
 - (IBAction)mediumFont:(id)sender {
     fontSize = @"25";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 }
 
 - (IBAction)bigFont:(id)sender {
     fontSize = @"30";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 }
 
 
 - (IBAction)fontType1:(id)sender {
     fontTypeName = @"HiraginoKakuGothicProNW3";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
     
 }
 
 - (IBAction)fontType2:(id)sender {
     fontTypeName = @"Thonburi";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 }
 
 - (IBAction)fontType3:(id)sender {
     fontTypeName = @"HeitiTCLight";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 }
 
 - (IBAction)fontType4:(id)sender {
     fontTypeName = @"Palatino";
-    [self.smsText setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
 }
 @end

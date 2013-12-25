@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "linphonecore.h"
+#import "HPGrowingTextView.h"
 
-@interface ChatMainWindow : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ChatMainWindow : UIViewController <HPGrowingTextViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
         LinphoneChatRoom *chatRoom;
     	NSMutableArray *arryData;
@@ -34,7 +35,12 @@
 
 @property (nonatomic, copy) NSString *remoteAddress;
 
-@property (weak, nonatomic) IBOutlet UITextField *smsText;
+
+@property (weak, nonatomic) IBOutlet UIView *chatView;
+
+@property (weak, nonatomic) IBOutlet UIView *messageView;
+@property (retain, nonatomic) IBOutlet HPGrowingTextView *messageField;
+
 
 //FONT
 @property (weak, nonatomic) NSString *fontSize;
