@@ -39,6 +39,8 @@ NSString *const SENDING = @"sending_sms";
 NSString *const RECEIVING = @"receiving_sms";
 
 
+# define CGFLOAT_MAX FLT_MAX
+#define MESSAGE_TEXT_WIDTH_MAX               180
 
 @synthesize remoteAddress;
 @synthesize sendButton;
@@ -429,7 +431,8 @@ NSString *const RECEIVING = @"receiving_sms";
     NSString *font_size_info = [arryData objectAtIndex:indexPath.row][FONT_SIZE];
     NSString *sms_data_info = [arryData objectAtIndex:indexPath.row][SMS_INFO];
     //NSLog(@"font_name_info = %@", font_name_info);
-	cell.textData.text  = sms_data_info;
+	[cell.textData setText: sms_data_info];
+    
     [cell.textData setFont: [UIFont fontWithName:font_name_info size:[font_size_info intValue] ]];
     cell.textData.textColor = [UIColor whiteColor];
     if ([[arryData objectAtIndex:indexPath.row][DIR_INFO] isEqualToString:RECEIVING]  ) {
@@ -437,6 +440,7 @@ NSString *const RECEIVING = @"receiving_sms";
     } else {
         cell.textData.textAlignment = NSTextAlignmentLeft;
     }
+    
     return cell;
 }
 
@@ -521,18 +525,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
-/*
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *CellIdentifier = @"Cell";
-  
-    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // NSLog(@"check dic = %@",[arryData objectAtIndex:indexPath.row] );
+ 
+    if (tableView == self.fontListTableView) {
+        return 30;
+    } else {
+
     NSString *font_name_info = [arryData objectAtIndex:indexPath.row][FONT_TYPE];
     NSString *font_size_info = [arryData objectAtIndex:indexPath.row][FONT_SIZE];
     NSString *sms_data_info = [arryData objectAtIndex:indexPath.row][SMS_INFO];
+    //NSLog(@"font_name_info = %@", font_name_info);
+	// cell.textData.text  = sms_data_info;
+    NSLog(@"indexPath.row = %d", indexPath.row);
+
+    UITextView *textViewTemp = [[UITextView alloc] init];
+    textViewTemp.text = sms_data_info;
+    [textViewTemp setFont: [UIFont fontWithName:font_name_info size:[font_size_info intValue] ]];
+
+    return [textViewTemp sizeThatFits:CGSizeMake(MESSAGE_TEXT_WIDTH_MAX, CGFLOAT_MAX)].height;
+    }
+  
     
-    return 4;
-}*/
+    
+}
+
 
 - (IBAction)sendSMS:(id)sender {
     NSDictionary *smsPDU = @{FONT_TYPE :fontTypeName, FONT_SIZE : fontSize, SMS_INFO : [messageField text]};
