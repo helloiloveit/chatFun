@@ -33,10 +33,12 @@ NSString *const REMOVE_ADDRESS2 = @"dunglh";
 
 NSString *const FONT_TYPE = @"font_type";
 NSString *const FONT_SIZE = @"font_size";
+NSString *const COLOR_CODE= @"color_code";
 NSString *const SMS_INFO = @"sms_info";
 NSString *const DIR_INFO = @"direction_info";
 NSString *const SENDING = @"sending_sms";
 NSString *const RECEIVING = @"receiving_sms";
+
 
 
 # define CGFLOAT_MAX FLT_MAX
@@ -50,6 +52,7 @@ NSString *const RECEIVING = @"receiving_sms";
 @synthesize stylingSelection;
 @synthesize fontSize;
 @synthesize fontTypeName;
+@synthesize colorCodeName;
 @synthesize messageField;
 @synthesize messageView;
 @synthesize chatView;
@@ -289,7 +292,7 @@ NSString *const RECEIVING = @"receiving_sms";
     messageField.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     messageField.backgroundColor = [UIColor redColor];
     
-    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"merry christmax"};
+    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"^.*"};
     
     
     /*
@@ -309,6 +312,17 @@ NSString *const RECEIVING = @"receiving_sms";
     arryData = [[NSMutableArray alloc] initWithObjects:dict1,dict1,dict1,dict1,nil];
     fontArrayData =[[NSMutableArray alloc] initWithObjects:@"HiraKakuProN-W6",@"Cochin-Italic",@"STHeitiSC-Light",@"BradleyHandITCTT-Bold", @"Noteworthy-Light", @"Zapfino", nil];
   
+    colorArrayData =[[NSMutableArray alloc] initWithObjects:@"blackColor",@"greenColor",@"redColor",@"whiteColor", @"blueColor", @"cyanColor",@"purpleColor" ,nil];
+    colorDicData = @{
+                                       @"blackColor" : [UIColor blackColor],
+                                       @"greenColor" : [UIColor greenColor],
+                                       @"redColor" : [UIColor redColor],
+                                       @"whiteColor": [UIColor whiteColor],
+                                       @"blueColor" :[ UIColor blueColor],
+                                       @"cyanColor" : [ UIColor cyanColor],
+                                       @"purpleColor" : [ UIColor purpleColor]
+                    };
+    
     [super viewDidLoad];
     
 
@@ -345,7 +359,11 @@ NSString *const RECEIVING = @"receiving_sms";
     //fontSize = results[FONT_SIZE];
     //fontTypeName = results[FONT_TYPE];
     @try {
-        NSDictionary *temp_dic = @{DIR_INFO:RECEIVING,FONT_TYPE:results[FONT_TYPE],FONT_SIZE:results[FONT_SIZE],SMS_INFO:results[SMS_INFO]};
+        NSDictionary *temp_dic = @{DIR_INFO:RECEIVING,
+                                   FONT_TYPE:results[FONT_TYPE],
+                                   FONT_SIZE:results[FONT_SIZE],
+                                   COLOR_CODE:results[COLOR_CODE],
+                                   SMS_INFO:results[SMS_INFO]};
         return temp_dic;
     }
     @catch (NSException *exception) {
@@ -388,7 +406,10 @@ NSString *const RECEIVING = @"receiving_sms";
     if (tableView == self.fontListTableView) {
         int count = [fontArrayData count];
         return count;
-    } else {
+    }else if (tableView == self.colorListTableView) {
+        int count = [colorArrayData count];
+        return count;
+    }else {
         int count = [arryData count];
         if(self.editing) count++;
         return count;
@@ -425,24 +446,32 @@ NSString *const RECEIVING = @"receiving_sms";
         cell.textLabel.text = @"live a life";
         return cell;
         
-    }
-    
-   // NSLog(@"check dic = %@",[arryData objectAtIndex:indexPath.row] );
-    NSString *font_name_info = [arryData objectAtIndex:indexPath.row][FONT_TYPE];
-    NSString *font_size_info = [arryData objectAtIndex:indexPath.row][FONT_SIZE];
-    NSString *sms_data_info = [arryData objectAtIndex:indexPath.row][SMS_INFO];
-    //NSLog(@"font_name_info = %@", font_name_info);
-	[cell.textData setText: sms_data_info];
-    
-    [cell.textData setFont: [UIFont fontWithName:font_name_info size:[font_size_info intValue] ]];
-    cell.textData.textColor = [UIColor blackColor];
-    if ([[arryData objectAtIndex:indexPath.row][DIR_INFO] isEqualToString:RECEIVING]  ) {
-            cell.textData.textAlignment = NSTextAlignmentRight;
+    } else if (tableView == self.colorListTableView){
+        NSString *color_name_info = [colorArrayData objectAtIndex:indexPath.row];
+        UIColor *color_code = [colorDicData objectForKey:color_name_info];
+        [cell.textLabel setTextColor: color_code];
+        cell.textLabel.text = @"live a life";
+        return cell;
     } else {
-        cell.textData.textAlignment = NSTextAlignmentLeft;
-    }
     
-    return cell;
+        // NSLog(@"check dic = %@",[arryData objectAtIndex:indexPath.row] );
+        NSString *font_name_info = [arryData objectAtIndex:indexPath.row][FONT_TYPE];
+        NSString *font_size_info = [arryData objectAtIndex:indexPath.row][FONT_SIZE];
+        NSString *sms_data_info = [arryData objectAtIndex:indexPath.row][SMS_INFO];
+        NSString *color_name_info = [arryData objectAtIndex:indexPath.row][COLOR_CODE];
+        //NSLog(@"font_name_info = %@", font_name_info);
+        [cell.textData setText: sms_data_info];
+        
+        [cell.textData setFont: [UIFont fontWithName:font_name_info size:[font_size_info intValue] ]];
+        cell.textData.textColor = [colorDicData objectForKey:color_name_info];
+        if ([[arryData objectAtIndex:indexPath.row][DIR_INFO] isEqualToString:RECEIVING]  ) {
+            cell.textData.textAlignment = NSTextAlignmentRight;
+        } else {
+            cell.textData.textAlignment = NSTextAlignmentLeft;
+        }
+        
+        return cell;
+    }
 }
 
 - (IBAction)AddButtonAction:(id)sender{
@@ -525,6 +554,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         [self.messageField setFont:[UIFont fontWithName:font_name_info size:[fontSize intValue]]];
         [messageField changeFontSizeOfTextInputtedArea:UITextFieldTextDidChangeNotification];
 
+    } else if (tableView == self.colorListTableView) {
+
+        NSString *color_name_info = [colorArrayData objectAtIndex:indexPath.row];
+        UIColor *color_code = [colorDicData objectForKey:color_name_info];
+        colorCodeName = color_name_info;
+        [self.messageField setTextColor:color_code];
+
     }
 }
 
@@ -533,6 +569,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     // NSLog(@"check dic = %@",[arryData objectAtIndex:indexPath.row] );
  
     if (tableView == self.fontListTableView) {
+        return 30;
+    } else if (tableView == self.colorListTableView){
         return 30;
     } else {
 
@@ -556,7 +594,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 - (IBAction)sendSMS:(id)sender {
-    NSDictionary *smsPDU = @{FONT_TYPE :fontTypeName, FONT_SIZE : fontSize, SMS_INFO : [messageField text]};
+    NSDictionary *smsPDU = @{FONT_TYPE :fontTypeName,
+                             FONT_SIZE : fontSize,
+                             COLOR_CODE: colorCodeName,
+                             SMS_INFO : [messageField text]};
     NSError *error;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:smsPDU
@@ -572,8 +613,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     
 
-    NSDictionary *text_data_unit = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE: fontSize, SMS_INFO:[messageField text]};
-    [arryData addObject:text_data_unit];
+
+    [arryData addObject:smsPDU];
     [arryData removeObjectAtIndex:0];
 	[smsTableView reloadData];
     

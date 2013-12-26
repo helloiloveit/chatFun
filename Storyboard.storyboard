@@ -187,15 +187,15 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FNG-to-dvk">
-                                        <rect key="frame" x="94" y="0.0" width="226" height="214"/>
+                                        <rect key="frame" x="94" y="0.0" width="112" height="214"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="USd-7K-8af">
-                                                <rect key="frame" x="0.0" y="22" width="226" height="44"/>
+                                                <rect key="frame" x="0.0" y="22" width="112" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="USd-7K-8af" id="HBD-ro-GCf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="226" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -203,6 +203,25 @@
                                         <connections>
                                             <outlet property="dataSource" destination="Uvv-as-X5V" id="zyi-hJ-bWv"/>
                                             <outlet property="delegate" destination="Uvv-as-X5V" id="tAI-BK-AaE"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4eR-do-d4n">
+                                        <rect key="frame" x="208" y="0.0" width="112" height="214"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="qMx-cX-9WH">
+                                                <rect key="frame" x="0.0" y="22" width="112" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qMx-cX-9WH" id="n3H-gh-wQ5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Uvv-as-X5V" id="F6Q-Zg-vkx"/>
+                                            <outlet property="delegate" destination="Uvv-as-X5V" id="EBm-ld-KEf"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -214,6 +233,7 @@
                     <navigationItem key="navigationItem" id="IcO-Fl-owo"/>
                     <connections>
                         <outlet property="chatView" destination="R4h-vK-ERb" id="gfX-m4-Lrn"/>
+                        <outlet property="colorListTableView" destination="4eR-do-d4n" id="VfN-Sk-n9D"/>
                         <outlet property="fontListTableView" destination="FNG-to-dvk" id="tBd-Ar-92E"/>
                         <outlet property="messageField" destination="xs7-NX-ARh" id="Oga-30-q4B"/>
                         <outlet property="messageView" destination="W15-xX-fMV" id="CKm-RP-xlk"/>

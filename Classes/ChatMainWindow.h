@@ -15,10 +15,13 @@
         LinphoneChatRoom *chatRoom;
     	NSMutableArray *arryData;
         NSMutableArray *fontArrayData;
+        NSMutableArray *colorArrayData;
+        NSDictionary   *colorDicData;
 }
 @property (weak, nonatomic) IBOutlet UITableView *smsTableView;
 
 @property (weak, nonatomic) IBOutlet UITableView *fontListTableView;
+@property (weak, nonatomic) IBOutlet UITableView *colorListTableView;
 
 - (IBAction)EditTable:(id)sender;
 
@@ -45,6 +48,7 @@
 //FONT
 @property (weak, nonatomic) NSString *fontSize;
 @property (weak, nonatomic) NSString *fontTypeName;
+@property (weak, nonatomic) NSString *colorCodeName;
 //Font size
 - (IBAction)smallFont:(id)sender;
 - (IBAction)mediumFont:(id)sender;
