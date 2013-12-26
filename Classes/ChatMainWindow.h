@@ -51,11 +51,6 @@
 - (IBAction)bigFont:(id)sender;
 
 
-//Font type
-- (IBAction)fontType1:(id)sender;
-- (IBAction)fontType2:(id)sender;
-- (IBAction)fontType3:(id)sender;
-- (IBAction)fontType4:(id)sender;
 
 
 

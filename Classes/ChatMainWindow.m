@@ -113,12 +113,12 @@ NSString *const RECEIVING = @"receiving_sms";
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     */
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(raiseUpInputtedArea) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideShowKeyboard) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)willShowKeyboard{
+- (void)raiseUpInputtedArea{
     NSLog(@"display position of chatView  y: %f",self.messageView.frame.origin.y   );
     NSLog(@"display position of chatView x : %f",self.messageView.frame.origin.x   );
     [UIView animateWithDuration:0.1
@@ -584,10 +584,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (IBAction)selectStyling:(id)sender {
 
     NSLog(@"styling pos = %f", stylingButton.frame.origin.y);
-    if (stylingButton.frame.origin.y == YES) {
+    if (stylingButton.frame.origin.y == 0.000000) {
         stylingSelection.hidden = NO;
         //[self dismissKeyboard];
-        [self showKeyboard];
+        //[self showKeyboard];
+        [self raiseUpInputtedArea];
+        [self dismissKeyboard];
 
         
     } else {
@@ -671,24 +673,6 @@ static void message_status(LinphoneChatMessage* msg,LinphoneChatMessageState sta
 }
 
 
-- (IBAction)fontType1:(id)sender {
-    fontTypeName = @"HiraginoKakuGothicProNW3";
-    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
-    
-}
 
-- (IBAction)fontType2:(id)sender {
-    fontTypeName = @"Thonburi";
-    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
-}
 
-- (IBAction)fontType3:(id)sender {
-    fontTypeName = @"HeitiTCLight";
-    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
-}
-
-- (IBAction)fontType4:(id)sender {
-    fontTypeName = @"Palatino";
-    [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
-}
 @end
