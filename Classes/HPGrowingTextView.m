@@ -94,7 +94,15 @@
 
     [self setPlaceholderColor:[UIColor lightGrayColor]];
     internalTextView.displayPlaceHolder = YES;
+    
+
 }
+
+- (void)changeFontSizeOfTextInputtedArea:(NSString *)notifCode
+{
+    [self refreshHeight];
+}
+
 
 -(CGSize)sizeThatFits:(CGSize)size
 {

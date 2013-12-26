@@ -40,7 +40,8 @@ NSString *const RECEIVING = @"receiving_sms";
 
 
 # define CGFLOAT_MAX FLT_MAX
-#define MESSAGE_TEXT_WIDTH_MAX               180
+#define MESSAGE_TEXT_WIDTH_MAX               320
+#define KEYBOARD_HEIGHT                       300
 
 @synthesize remoteAddress;
 @synthesize sendButton;
@@ -125,7 +126,7 @@ NSString *const RECEIVING = @"receiving_sms";
                         options: 0
                      animations:^{
                          CGRect chatFrame = [[self messageView] frame];
-                         chatFrame.origin.y = 300;
+                         chatFrame.origin.y = KEYBOARD_HEIGHT;
                          [[self messageView] setFrame:chatFrame];
 
                      }
@@ -191,7 +192,7 @@ NSString *const RECEIVING = @"receiving_sms";
 
 
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"tree.jpg"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"tree2.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.chatView.backgroundColor = [UIColor colorWithPatternImage:image];
@@ -286,7 +287,7 @@ NSString *const RECEIVING = @"receiving_sms";
 	messageField.font = [UIFont systemFontOfSize:18.0f];
     messageField.contentInset = UIEdgeInsetsMake(10, -5, -2, -5);
     messageField.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    messageField.backgroundColor = [UIColor clearColor];
+    messageField.backgroundColor = [UIColor redColor];
     
     NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"merry christmax"};
     
@@ -434,7 +435,7 @@ NSString *const RECEIVING = @"receiving_sms";
 	[cell.textData setText: sms_data_info];
     
     [cell.textData setFont: [UIFont fontWithName:font_name_info size:[font_size_info intValue] ]];
-    cell.textData.textColor = [UIColor whiteColor];
+    cell.textData.textColor = [UIColor blackColor];
     if ([[arryData objectAtIndex:indexPath.row][DIR_INFO] isEqualToString:RECEIVING]  ) {
             cell.textData.textAlignment = NSTextAlignmentRight;
     } else {
@@ -522,6 +523,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         NSString *font_name_info = [fontArrayData objectAtIndex:indexPath.row];
         fontTypeName = font_name_info;
         [self.messageField setFont:[UIFont fontWithName:font_name_info size:[fontSize intValue]]];
+        [messageField changeFontSizeOfTextInputtedArea:UITextFieldTextDidChangeNotification];
+
     }
 }
 
@@ -649,17 +652,22 @@ static void message_status(LinphoneChatMessage* msg,LinphoneChatMessageState sta
 - (IBAction)smallFont:(id)sender {
     fontSize = @"15";
     [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
-
+    NSLog(@"size of message Field = %f", self.messageField.frame.size.height);
+    
+    [messageField changeFontSizeOfTextInputtedArea:UITextFieldTextDidChangeNotification];
+    
 }
 
 - (IBAction)mediumFont:(id)sender {
     fontSize = @"25";
     [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [messageField changeFontSizeOfTextInputtedArea:UITextFieldTextDidChangeNotification];
 }
 
 - (IBAction)bigFont:(id)sender {
     fontSize = @"30";
     [self.messageField setFont:[UIFont fontWithName:fontTypeName size:[fontSize intValue]]];
+    [messageField changeFontSizeOfTextInputtedArea:UITextFieldTextDidChangeNotification];
 }
 
 

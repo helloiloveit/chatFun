@@ -75,7 +75,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" id="rfd-iN-SRl">
-                                        <rect key="frame" x="0.0" y="1" width="320" height="298"/>
+                                        <rect key="frame" x="0.0" y="1" width="320" height="278"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -89,7 +89,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" id="TSb-7H-pRx">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                                                            <rect key="frame" x="7" y="0.0" width="306" height="135"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <attributedString key="attributedText">
@@ -117,7 +117,7 @@
                                             <outlet property="delegate" destination="Uvv-as-X5V" id="3Jb-h0-LU1"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" id="W15-xX-fMV">
+                                    <view alpha="0.89999999999999991" contentMode="scaleToFill" id="W15-xX-fMV">
                                         <rect key="frame" x="-8" y="522" width="329" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -142,12 +142,12 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" id="xs7-NX-ARh" customClass="HPGrowingTextView">
-                                                <rect key="frame" x="71" y="7" width="186" height="37"/>
+                                                <rect key="frame" x="71" y="0.0" width="186" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
