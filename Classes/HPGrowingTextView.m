@@ -247,7 +247,7 @@
 {
     
     NSLog(@"display position of internalTextView.frame: %f",internalTextView.frame.size.height   );
-
+    NSLog(@"display position of messageview: %f",self.frame.size.height   );
 	//size of content, so we can set the frame of self
 	NSInteger newSizeH = [self measureHeight];
 	if(newSizeH < minHeight || !internalTextView.hasText) newSizeH = minHeight; //not smalles than minHeight

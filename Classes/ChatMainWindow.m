@@ -122,20 +122,24 @@ NSString *const RECEIVING = @"receiving_sms";
 }
 
 - (void)raiseUpInputtedArea{
-    NSLog(@"display position of chatView  y: %f",self.messageView.frame.origin.y   );
-    NSLog(@"display position of chatView x : %f",self.messageView.frame.origin.x   );
-    [UIView animateWithDuration:0.1
-                          delay:0
-                        options: 0
-                     animations:^{
-                         CGRect chatFrame = [[self messageView] frame];
-                         chatFrame.origin.y = KEYBOARD_HEIGHT;
-                         [[self messageView] setFrame:chatFrame];
-
-                     }
-                     completion:^(BOOL finished){
-                         
-                     }];
+    NSLog(@"display position of messageView  y: %f",self.messageView.frame.origin.y   );
+    NSLog(@"display position of messageView x : %f",self.messageView.frame.origin.x   );
+    if (self.messageView.frame.origin.y > KEYBOARD_HEIGHT) {
+        [UIView animateWithDuration:0.1
+                              delay:0
+                            options: 0
+                         animations:^{
+                             CGRect chatFrame = [[self messageView] frame];
+                             chatFrame.origin.y = KEYBOARD_HEIGHT - self.messageView.frame.size.height + 44;
+                             [[self messageView] setFrame:chatFrame];
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+    }
+    NSLog(@"display position of messageView  y: %f",self.messageView.frame.origin.y   );
+    NSLog(@"display position of messageView x : %f",self.messageView.frame.origin.x   );
     /*
     NSLog(@"display position of sendButton  y: %f",self.sendButton.frame.origin.y   );
     NSLog(@"display position of sendButton x : %f",self.sendButton.frame.origin.x   );
@@ -164,6 +168,7 @@ NSString *const RECEIVING = @"receiving_sms";
     self.stylingSelection.hidden = YES;
     NSLog(@"display position of chatView  y: %f",self.messageView.frame.origin.y   );
     NSLog(@"display position of chatView x : %f",self.messageView.frame.origin.x   );
+        NSLog(@"display position of chatView x : %f",self.messageView.frame.size.height);
     CGRect chatFrame = [[self messageView] frame];
     chatFrame.origin.y = [[self view] frame].size.height - messageView.frame.size.height;
     [[self messageView] setFrame:chatFrame];
@@ -190,7 +195,7 @@ NSString *const RECEIVING = @"receiving_sms";
     
     fontTypeName = @"Noteworthy-Light";
     fontSize = @"25";
-
+    colorCodeName = @"blackColor";
 
 
 
@@ -391,6 +396,12 @@ NSString *const RECEIVING = @"receiving_sms";
         [arryData removeObjectAtIndex:0];
         [smsTableView reloadData];
     }
+    [self updateApplicationBadgeNumber];
+}
+
+- (void)updateApplicationBadgeNumber {
+
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
 }
 
 
