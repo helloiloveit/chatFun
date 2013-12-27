@@ -14,7 +14,7 @@
 @end
 
 @implementation WizardViewController
-@synthesize userName, passWord, domainName;
+@synthesize userName, passWord, domainName, loginStatus;
 
 
 -(void)turnOffTyping{
@@ -61,11 +61,13 @@
 - (void)registrationUpdate:(LinphoneRegistrationState)state {
     switch (state) {
         case LinphoneRegistrationOk: {
-            
+            loginStatus.hidden = NO;
+            loginStatus.text =@"Loging successfully";
+            /*
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ping Ping" message:@"Loging successfully" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"okay", nil, nil];
 
             [alert show];
-            NSLog(@"lalal");
+             */
             [ self performSegueWithIdentifier: @"go_to_chat" sender: NULL];
             break;
         }
@@ -75,9 +77,13 @@
             break;
         }
         case LinphoneRegistrationFailed: {
+            loginStatus.hidden = NO;
+            loginStatus.text =@"Loging failed";
+            /*
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opps" message:@"Loging Failed" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"okay", nil, nil];
             
             [alert show];
+             */
             break;
         }
         case LinphoneRegistrationProgress: {

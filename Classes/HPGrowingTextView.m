@@ -246,8 +246,15 @@
 - (void)refreshHeight
 {
     
-    NSLog(@"display position of internalTextView.frame: %f",internalTextView.frame.size.height   );
-    NSLog(@"display position of messageview: %f",self.frame.size.height   );
+    NSLog(@"HEIGHT OF internalTextView: %f",internalTextView.frame.size.height   );
+    NSLog(@"HEIGHT OF of messageview: %f",internalTextView.frame.size.height   );
+    
+    //diry fix for self height is not follow internal Text View
+    CGRect viewRect = [self frame];
+    viewRect.size.height = internalTextView.frame.size.height;
+    [self setFrame:viewRect];
+    //done dirty fix
+    
 	//size of content, so we can set the frame of self
 	NSInteger newSizeH = [self measureHeight];
 	if(newSizeH < minHeight || !internalTextView.hasText) newSizeH = minHeight; //not smalles than minHeight

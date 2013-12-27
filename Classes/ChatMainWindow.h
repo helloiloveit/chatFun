@@ -16,12 +16,14 @@
     	NSMutableArray *arryData;
         NSMutableArray *fontArrayData;
         NSMutableArray *colorArrayData;
+        NSMutableArray *themeColorArrayData;
         NSDictionary   *colorDicData;
 }
 @property (weak, nonatomic) IBOutlet UITableView *smsTableView;
 
 @property (weak, nonatomic) IBOutlet UITableView *fontListTableView;
 @property (weak, nonatomic) IBOutlet UITableView *colorListTableView;
+@property (weak, nonatomic) IBOutlet UITableView *themeColorTableView;
 
 - (IBAction)EditTable:(id)sender;
 
@@ -49,6 +51,8 @@
 @property (weak, nonatomic) NSString *fontSize;
 @property (weak, nonatomic) NSString *fontTypeName;
 @property (weak, nonatomic) NSString *colorCodeName;
+@property (weak, nonatomic) NSString *themeColorCodeName;
+
 //Font size
 - (IBAction)smallFont:(id)sender;
 - (IBAction)mediumFont:(id)sender;

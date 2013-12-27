@@ -14,8 +14,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nLN-GY-pwy">
-                                <rect key="frame" x="85" y="260" width="41" height="30"/>
+                                <rect key="frame" x="85" y="277" width="119" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="singin">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -23,27 +24,26 @@
                                     <action selector="singin:" destination="dzq-3V-b9V" eventType="touchUpInside" id="RM4-ao-3EB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EgE-fw-zE4">
-                                <rect key="frame" x="176" y="260" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="go to chat">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="ZXk-vd-Pts">
-                                <rect key="frame" x="85" y="176" width="119" height="30"/>
+                                <rect key="frame" x="48" y="176" width="201" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sip2sip.info" borderStyle="roundedRect" minimumFontSize="17" id="Uhr-h8-39u">
-                                <rect key="frame" x="85" y="214" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sip2sip.info" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="Uhr-h8-39u">
+                                <rect key="frame" x="48" y="214" width="201" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="0c4-7d-9u5">
-                                <rect key="frame" x="85" y="133" width="97" height="30"/>
+                                <rect key="frame" x="48" y="131" width="201" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="5od-bq-P5D">
+                                <rect key="frame" x="48" y="0.0" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -53,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="domainName" destination="Uhr-h8-39u" id="WdY-WO-ggZ"/>
+                        <outlet property="loginStatus" destination="5od-bq-P5D" id="7zh-77-UzF"/>
                         <outlet property="passWord" destination="ZXk-vd-Pts" id="s3i-tp-nz2"/>
                         <outlet property="userName" destination="0c4-7d-9u5" id="eoq-0e-NcX"/>
                         <segue destination="TFk-pz-vfL" kind="modal" identifier="go_to_chat" id="j1Z-rg-s7G"/>
@@ -157,7 +158,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l3r-9S-ggs">
-                                        <rect key="frame" x="26" y="34" width="46" height="41"/>
+                                        <rect key="frame" x="2" y="0.0" width="46" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="a">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,7 +168,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xaA-Ff-Tbs">
-                                        <rect key="frame" x="34" y="93" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="70" width="48" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="A">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,7 +178,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rSG-rq-Iqf">
-                                        <rect key="frame" x="34" y="143" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="133" width="48" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AA">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -187,15 +188,15 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FNG-to-dvk">
-                                        <rect key="frame" x="94" y="0.0" width="112" height="214"/>
+                                        <rect key="frame" x="52" y="0.0" width="86" height="214"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="USd-7K-8af">
-                                                <rect key="frame" x="0.0" y="22" width="112" height="44"/>
+                                                <rect key="frame" x="0.0" y="22" width="86" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="USd-7K-8af" id="HBD-ro-GCf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="86" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -206,15 +207,15 @@
                                         </connections>
                                     </tableView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4eR-do-d4n">
-                                        <rect key="frame" x="208" y="0.0" width="112" height="214"/>
+                                        <rect key="frame" x="138" y="0.0" width="94" height="214"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="qMx-cX-9WH">
-                                                <rect key="frame" x="0.0" y="22" width="112" height="44"/>
+                                                <rect key="frame" x="0.0" y="22" width="94" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qMx-cX-9WH" id="n3H-gh-wQ5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -222,6 +223,25 @@
                                         <connections>
                                             <outlet property="dataSource" destination="Uvv-as-X5V" id="F6Q-Zg-vkx"/>
                                             <outlet property="delegate" destination="Uvv-as-X5V" id="EBm-ld-KEf"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hQC-yA-p2T">
+                                        <rect key="frame" x="232" y="0.0" width="88" height="214"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="eOK-lp-3PK">
+                                                <rect key="frame" x="0.0" y="22" width="88" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOK-lp-3PK" id="gBx-4m-Zmt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Uvv-as-X5V" id="89k-t7-Nzs"/>
+                                            <outlet property="delegate" destination="Uvv-as-X5V" id="hPx-ew-w1x"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -241,6 +261,7 @@
                         <outlet property="smsTableView" destination="rfd-iN-SRl" id="oa5-0e-yle"/>
                         <outlet property="stylingButton" destination="l2e-sN-UnZ" id="t4I-Fe-g3J"/>
                         <outlet property="stylingSelection" destination="0EF-zu-YcS" id="tn1-Dx-gUC"/>
+                        <outlet property="themeColorTableView" destination="hQC-yA-p2T" id="Y5R-Xt-zeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fZ-J5-bXA" userLabel="First Responder" sceneMemberID="firstResponder"/>

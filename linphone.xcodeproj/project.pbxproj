@@ -90,8 +90,11 @@
 		3A5B9476186AEC3900964B5B /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B9475186AEC3900964B5B /* 8.jpg */; };
 		3A5B9478186AED6600964B5B /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B9477186AED6600964B5B /* 3.jpg */; };
 		3A5B947A186AEDD000964B5B /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B9479186AEDD000964B5B /* 6.jpg */; };
-		3A5B947C186AF15900964B5B /* tree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B947B186AF15900964B5B /* tree.jpg */; };
-		3A5B947E186AF2EF00964B5B /* tree2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B947D186AF2EF00964B5B /* tree2.jpg */; };
+		3A5B947E186AF2EF00964B5B /* tree@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B947D186AF2EF00964B5B /* tree@2x.jpg */; };
+		3A5B9480186D506800964B5B /* tree3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B947F186D506800964B5B /* tree3.png */; };
+		3A5B9482186D527300964B5B /* Vector - Curl Tree Design by DragonArt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B9481186D527300964B5B /* Vector - Curl Tree Design by DragonArt.png */; };
+		3A5B948A186D5D2500964B5B /* Downloadwater@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B9489186D5D2500964B5B /* Downloadwater@2x.jpg */; };
+		3A5B948C186D736800964B5B /* musicThought@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B948B186D736800964B5B /* musicThought@2x.jpg */; };
 		3A6FB7CD184EC31F00DF8B21 /* ChatMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB7CC184EC31F00DF8B21 /* ChatMainWindow.m */; };
 		3A6FB7D0184EC39300DF8B21 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB7CF184EC39300DF8B21 /* CustomTableViewCell.m */; };
 		3A847D7D184DD3C8007583A2 /* linphone-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A847D7C184DD3C8007583A2 /* linphone-Info.plist */; };
@@ -528,8 +531,11 @@
 		3A5B9475186AEC3900964B5B /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		3A5B9477186AED6600964B5B /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		3A5B9479186AEDD000964B5B /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		3A5B947B186AF15900964B5B /* tree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tree.jpg; sourceTree = "<group>"; };
-		3A5B947D186AF2EF00964B5B /* tree2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tree2.jpg; sourceTree = "<group>"; };
+		3A5B947D186AF2EF00964B5B /* tree@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tree@2x.jpg"; sourceTree = "<group>"; };
+		3A5B947F186D506800964B5B /* tree3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree3.png; sourceTree = "<group>"; };
+		3A5B9481186D527300964B5B /* Vector - Curl Tree Design by DragonArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vector - Curl Tree Design by DragonArt.png"; sourceTree = "<group>"; };
+		3A5B9489186D5D2500964B5B /* Downloadwater@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Downloadwater@2x.jpg"; sourceTree = "<group>"; };
+		3A5B948B186D736800964B5B /* musicThought@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "musicThought@2x.jpg"; sourceTree = "<group>"; };
 		3A6FB7CB184EC31F00DF8B21 /* ChatMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMainWindow.h; sourceTree = "<group>"; };
 		3A6FB7CC184EC31F00DF8B21 /* ChatMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMainWindow.m; sourceTree = "<group>"; };
 		3A6FB7CE184EC39300DF8B21 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
@@ -1248,9 +1254,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3A5B947D186AF2EF00964B5B /* tree2.jpg */,
-				3A5B947B186AF15900964B5B /* tree.jpg */,
+				3A5B9489186D5D2500964B5B /* Downloadwater@2x.jpg */,
+				3A5B947D186AF2EF00964B5B /* tree@2x.jpg */,
+				3A5B948B186D736800964B5B /* musicThought@2x.jpg */,
+				3A5B9481186D527300964B5B /* Vector - Curl Tree Design by DragonArt.png */,
 				3A5B9479186AEDD000964B5B /* 6.jpg */,
+				3A5B947F186D506800964B5B /* tree3.png */,
 				3A5B9477186AED6600964B5B /* 3.jpg */,
 				3A5B9475186AEC3900964B5B /* 8.jpg */,
 				3A847D7C184DD3C8007583A2 /* linphone-Info.plist */,
@@ -1460,12 +1469,15 @@
 				3A5B9476186AEC3900964B5B /* 8.jpg in Resources */,
 				3A847D7D184DD3C8007583A2 /* linphone-Info.plist in Resources */,
 				3A5B947A186AEDD000964B5B /* 6.jpg in Resources */,
+				3A5B948C186D736800964B5B /* musicThought@2x.jpg in Resources */,
 				3AB4CA6118642A5800C4D455 /* linphone_splashscreen-568h@2x.png in Resources */,
-				3A5B947C186AF15900964B5B /* tree.jpg in Resources */,
+				3A5B9480186D506800964B5B /* tree3.png in Resources */,
 				3A847D85184DDA92007583A2 /* Storyboard.storyboard in Resources */,
-				3A5B947E186AF2EF00964B5B /* tree2.jpg in Resources */,
+				3A5B947E186AF2EF00964B5B /* tree@2x.jpg in Resources */,
 				D34F6F9E1594D3FB0095705B /* InAppSettings.bundle in Resources */,
+				3A5B948A186D5D2500964B5B /* Downloadwater@2x.jpg in Resources */,
 				3A5B9478186AED6600964B5B /* 3.jpg in Resources */,
+				3A5B9482186D527300964B5B /* Vector - Curl Tree Design by DragonArt.png in Resources */,
 				F04892FF180C3296002FED35 /* ImageOptim.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

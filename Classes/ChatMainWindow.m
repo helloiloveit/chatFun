@@ -44,6 +44,7 @@ NSString *const RECEIVING = @"receiving_sms";
 # define CGFLOAT_MAX FLT_MAX
 #define MESSAGE_TEXT_WIDTH_MAX               320
 #define KEYBOARD_HEIGHT                       300
+#define TAB_HEIGHT                           44
 
 @synthesize remoteAddress;
 @synthesize sendButton;
@@ -53,6 +54,7 @@ NSString *const RECEIVING = @"receiving_sms";
 @synthesize fontSize;
 @synthesize fontTypeName;
 @synthesize colorCodeName;
+@synthesize themeColorCodeName;
 @synthesize messageField;
 @synthesize messageView;
 @synthesize chatView;
@@ -130,7 +132,7 @@ NSString *const RECEIVING = @"receiving_sms";
                             options: 0
                          animations:^{
                              CGRect chatFrame = [[self messageView] frame];
-                             chatFrame.origin.y = KEYBOARD_HEIGHT - self.messageView.frame.size.height + 44;
+                             chatFrame.origin.y = KEYBOARD_HEIGHT - self.messageView.frame.size.height + TAB_HEIGHT;
                              [[self messageView] setFrame:chatFrame];
                              
                          }
@@ -200,11 +202,14 @@ NSString *const RECEIVING = @"receiving_sms";
 
 
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"tree2.jpg"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+  //  [[UIImage imageNamed:@"Downloadwater.jpg"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"tree.jpg"] drawInRect:self.view.bounds];
+
+ //   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.chatView.backgroundColor = [UIColor colorWithPatternImage:image];
-    
+   // self.chatView.backgroundColor = [UIColor colorWithPatternImage:image];
+//    self.chatView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"musicThought.jpg"]];
+    self.chatView.backgroundColor = [UIColor clearColor];
     //self.view.backgroundColor = [UIColor blackColor];
    // chatView.backgroundColor = [UIColor blackColor];
     
@@ -295,9 +300,9 @@ NSString *const RECEIVING = @"receiving_sms";
 	messageField.font = [UIFont systemFontOfSize:18.0f];
     messageField.contentInset = UIEdgeInsetsMake(10, -5, -2, -5);
     messageField.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    messageField.backgroundColor = [UIColor redColor];
+    messageField.backgroundColor = [UIColor clearColor];
     
-    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@"^.*"};
+    NSDictionary *dict1 = @{DIR_INFO:SENDING, FONT_TYPE: fontTypeName, FONT_SIZE:fontSize,SMS_INFO:@""};
     
     
     /*
@@ -318,6 +323,9 @@ NSString *const RECEIVING = @"receiving_sms";
     fontArrayData =[[NSMutableArray alloc] initWithObjects:@"HiraKakuProN-W6",@"Cochin-Italic",@"STHeitiSC-Light",@"BradleyHandITCTT-Bold", @"Noteworthy-Light", @"Zapfino", nil];
   
     colorArrayData =[[NSMutableArray alloc] initWithObjects:@"blackColor",@"greenColor",@"redColor",@"whiteColor", @"blueColor", @"cyanColor",@"purpleColor" ,nil];
+    
+    themeColorArrayData=[[NSMutableArray alloc] initWithObjects:@"blackColor",@"greenColor",@"redColor",@"whiteColor", @"blueColor", @"cyanColor",@"purpleColor" ,nil];
+    
     colorDicData = @{
                                        @"blackColor" : [UIColor blackColor],
                                        @"greenColor" : [UIColor greenColor],
@@ -420,6 +428,9 @@ NSString *const RECEIVING = @"receiving_sms";
     }else if (tableView == self.colorListTableView) {
         int count = [colorArrayData count];
         return count;
+    }else if (tableView == self.themeColorTableView) {
+        int count = [themeColorArrayData count];
+        return count;
     }else {
         int count = [arryData count];
         if(self.editing) count++;
@@ -462,6 +473,16 @@ NSString *const RECEIVING = @"receiving_sms";
         UIColor *color_code = [colorDicData objectForKey:color_name_info];
         [cell.textLabel setTextColor: color_code];
         cell.textLabel.text = @"live a life";
+        return cell;
+    } else if (tableView == self.themeColorTableView){
+        NSString *color_name_info = [themeColorArrayData objectAtIndex:indexPath.row];
+        UIColor *color_code = [colorDicData objectForKey:color_name_info];
+        //[cell.textLabel setTextColor: color_code];
+        cell.textLabel.backgroundColor = color_code;
+        cell.textLabel.backgroundColor = color_code;
+        cell.backgroundColor =color_code;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         return cell;
     } else {
     
@@ -572,6 +593,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         colorCodeName = color_name_info;
         [self.messageField setTextColor:color_code];
 
+    } else if (tableView == self.themeColorTableView) {
+        
+        NSString *color_name_info = [themeColorArrayData  objectAtIndex:indexPath.row];
+        UIColor *color_code = [colorDicData objectForKey:color_name_info];
+        themeColorCodeName = color_name_info;
+        
+        self.chatView.backgroundColor = color_code;
+        
     }
 }
 
@@ -582,6 +611,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.fontListTableView) {
         return 30;
     } else if (tableView == self.colorListTableView){
+        return 30;
+    } else if (tableView == self.themeColorTableView){
         return 30;
     } else {
 
